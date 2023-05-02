@@ -15,7 +15,7 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a href="#" class="dropdown-item">To Shopping List</a></li>
+        <li><a class="dropdown-item" (click)="addIngs(clickedR.ingredients)" style="cursor: pointer">To Shopping List</a></li>
         <li><a href="#" class="dropdown-item">Edit Recipe</a></li>
         <li><a href="#" class="dropdown-item">Delete Recipe</a></li>
       </ul>
@@ -30,6 +30,8 @@
 </div>
 <div class="row">
   <div class="col-xs-12 m-3">
-    Ingredients
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ing of clickedR.ingredients" >{{ing.name}} / {{ing.amount}}</li>
+    </ul>
   </div>
 </div>

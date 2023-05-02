@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, ElementRef } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 
 
 @Directive({
