@@ -9,5 +9,6 @@ import {RecipeModel} from "../../recipe.model";
 export class RecipeItemComponent {
 
   @Input() rec : RecipeModel
+  @Input() index : number
 
 }

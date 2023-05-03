@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  activeSection: string = "recipe"
 
-  switch(data) {
-    this.activeSection = data;
-  }
 }

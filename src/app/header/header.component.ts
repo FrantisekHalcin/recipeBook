@@ -7,11 +7,4 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class HeaderComponent {
 
-  @Output() activeSite = new EventEmitter<string>()
-
-  navigate(site:string) {
-
-    this.activeSite.emit(site);
-  }
-
 }

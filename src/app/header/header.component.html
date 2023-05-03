@@ -1,31 +1,31 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Recipe book</a>
+    <a class="navbar-brand" style="cursor: pointer">Recipe book</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" (click)="navigate('recipe')">Recipes</a>
+      <ul class="nav navbar-nav mx-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['recipes']">Recipes</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="navigate('shopList')">Shopping list</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['shopping-list']">Shopping list</a>
         </li>
         </ul>
       <ul class="navbar-nav ml-auto pe-xxl-5">
         <li class="nav-item dropdown bg-amber-700">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false" appDropdown>
           Manage
         </a>
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Save data</a></li>
-          <li><a class="dropdown-item" href="#">Fetch data</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer">Save data</a></li>
+          <li><a class="dropdown-item" style="cursor: pointer">Fetch data</a></li>
           <li> <div class="dropdown-divider"></div></li>
-          <li> <a class="dropdown-item" href="#">Something</a></li>
+          <li> <a class="dropdown-item" style="cursor: pointer">Something</a></li>
         </ul>
       </li>
       </ul>

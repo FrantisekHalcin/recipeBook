@@ -3,11 +3,6 @@
     <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-detail *ngIf="selectedR; else ifNot"  [clickedR]="selectedR"></app-recipe-detail>
-    <ng-template #ifNot>
-      <h1 class="align-self-center p-5">
-        Please Choose your favourite Food and display details of it :)
-      </h1>
-    </ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>
