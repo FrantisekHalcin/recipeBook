@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {RecipeModel} from "./recipe.model";
 import {IngredientModel} from "../shared/ingredient.model";
 
@@ -44,8 +44,6 @@ export class RecipesService {
         new IngredientModel('salt', 0.1)
       ])
   ];
-
-  selectedRecipe = new EventEmitter<RecipeModel>();
 
   constructor() { }
 
