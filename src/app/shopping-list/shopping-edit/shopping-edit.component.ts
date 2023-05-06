@@ -35,10 +35,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         )
     }
 
-    onSave(ing: IngredientModel, i: number) {
-
-    }
-
     onAdd(f?: NgForm) {
 
         const newIng: IngredientModel = new IngredientModel(
