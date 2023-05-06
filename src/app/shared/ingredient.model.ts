@@ -1,4 +1,4 @@
 export class IngredientModel {
-  constructor(public name: string, public amount : number) {
+  constructor(public ingName: string, public ingAmount : number) {
   }
 }

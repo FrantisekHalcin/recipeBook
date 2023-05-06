@@ -1,3 +1,7 @@
 button {
   margin: 7px;
 }
+
+input.ng-invalid.ng-dirty {
+    border: solid red 2px;
+}
