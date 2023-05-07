@@ -3,6 +3,7 @@ import {IngredientModel} from "../../shared/ingredient.model";
 import {ShopListService} from "../shop-list.service";
 import {NgForm} from "@angular/forms";
 import {Subscription} from "rxjs";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-shopping-edit',
