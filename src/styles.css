@@ -1,0 +1,13 @@
+.snackBox {
+    color: white;
+    background-color: #103301;
+    width: fit-content;
+    height: fit-content;
+    margin-inline: auto !important;
+    position: absolute !important;
+    bottom: 60px !important;
+}
+
+.red {
+    color: #ff8181;
+}

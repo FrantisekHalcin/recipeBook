@@ -3,7 +3,8 @@ import {IngredientModel} from "../../shared/ingredient.model";
 import {ShopListService} from "../shop-list.service";
 import {NgForm} from "@angular/forms";
 import {Subscription} from "rxjs";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastService} from "../../toast.service";
+
 
 @Component({
     selector: 'app-shopping-edit',
@@ -12,13 +13,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
     @ViewChild('f', {static: false}) myForm: NgForm;
-    editMode = false;
+
+    editMode= false;
     editIndex: number;
     mySub: Subscription;
     editedIng: IngredientModel;
 
     constructor(
-        private sl: ShopListService
+        private sl: ShopListService,
+        private t: ToastService,
     ) {
     }
 
@@ -58,7 +61,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
     onDelete() {
         this.sl.deleteIng(this.editIndex);
+        this.t.snack('The ingredient was deleted','red');
         this.onClear();
+    }
+
+    snack(t:string, r?:string) {
+        this.t.snack(t, r)
     }
 
     ngOnDestroy() {

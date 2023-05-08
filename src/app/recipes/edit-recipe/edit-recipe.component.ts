@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {RecipesService} from "../recipes.service";
 import {FormGroup, FormBuilder, Validators, FormArray, FormControl} from "@angular/forms";
+import { ToastService} from "../../toast.service";
 
 @Component({
     selector: 'app-edit-recipe',
@@ -18,6 +19,7 @@ export class EditRecipeComponent implements OnInit {
         private rs: RecipesService,
         private fb: FormBuilder,
         private router: Router,
+        private t: ToastService
     ) {
     }
 
@@ -75,10 +77,13 @@ export class EditRecipeComponent implements OnInit {
         // )
         if (this.editMode) {
             this.rs.saveRecipe(this.recForm.value, this.id)
+            this.t.snack('The recipe was saved');
         } else {
             this.rs.addRecipe(this.recForm.value)
+            this.t.snack('The recipe was added to the list');
         }
         this.goAway();
+
     }
 
 

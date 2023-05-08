@@ -1,44 +1,47 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { DropdownDirective } from './dropdown.directive';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {RecipesComponent} from './recipes/recipes.component';
+import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
+import {RecipeListComponent} from './recipes/recipe-list/recipe-list.component';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component';
+import {ShoppingEditComponent} from './shopping-list/shopping-edit/shopping-edit.component';
+import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item.component';
+import {DropdownDirective} from './dropdown.directive';
 import {ShopListService} from "./shopping-list/shop-list.service";
-import { NewRecipeComponent } from './recipes/new-recipe/new-recipe.component';
-import { EditRecipeComponent } from './recipes/edit-recipe/edit-recipe.component';
-import { StartRecipesComponent } from './recipes/start-recipes/start-recipes.component';
+import {EditRecipeComponent} from './recipes/edit-recipe/edit-recipe.component';
+import {StartRecipesComponent} from './recipes/start-recipes/start-recipes.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeDetailComponent,
-    RecipeListComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    RecipeItemComponent,
-    DropdownDirective,
-    NewRecipeComponent,
-    EditRecipeComponent,
-    StartRecipesComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [ShopListService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        RecipesComponent,
+        RecipeDetailComponent,
+        RecipeListComponent,
+        ShoppingListComponent,
+        ShoppingEditComponent,
+        RecipeItemComponent,
+        DropdownDirective,
+        EditRecipeComponent,
+        StartRecipesComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        BrowserAnimationsModule
+    ],
+    providers: [ShopListService],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,5 +1,5 @@
 <div class="row mt-3">
-  <div class="col-xs-12">
+  <div class="col-sm-12">
     <form #f="ngForm" (ngSubmit)="onAdd(f)">
       <div class="row">
         <div class="col-sm-5">
@@ -7,6 +7,7 @@
           <input type="text" name="ingName" id="name" class="form-control"
                  ngModel
                  required
+                 #name
           >
         </div>
         <div class="col-sm-2">
@@ -15,16 +16,17 @@
                  ngModel
                  required
                  pattern="^[0-9]*$"
+                 #amount
           >
         </div>
       </div>
       <div class="row text-center mt-2">
-        <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" [disabled]="!f.valid"
+        <div class="col-sm-12">
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid || f.pristine"
                   (click)="snack( editMode?'The ingredient was updated':'The ingredient was added to the list')">
               {{ editMode? 'Update' : 'Add'}}</button>
-          <button *ngIf="editMode" class="btn btn-danger" type="button" (click)="onDelete()">Delete</button>
-          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+          <button (click)="onDelete()"  class="btn btn-danger" type="button" *ngIf="editMode">Delete</button>
+          <button class="btn btn-primary" type="button" [disabled]="amount.value == '' && name.value == ''" (click)="onClear()">Clear</button>
         </div>
       </div>
     </form>

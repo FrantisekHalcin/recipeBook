@@ -5,3 +5,7 @@ button {
 input.ng-invalid.ng-dirty {
     border: solid red 2px;
 }
+
+mat-form-field {
+    margin-right: 12px;
+}

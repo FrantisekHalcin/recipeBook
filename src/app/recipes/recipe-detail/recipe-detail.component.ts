@@ -4,6 +4,7 @@ import {ShopListService} from "../../shopping-list/shop-list.service";
 import {IngredientModel} from "../../shared/ingredient.model";
 import {RecipesService} from "../recipes.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ToastService} from "../../toast.service";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -18,7 +19,8 @@ constructor(
   private sl: ShopListService,
   private rs: RecipesService,
   private route: ActivatedRoute,
-  private router: Router
+  private router: Router,
+  private t: ToastService,
 ) {
 }
 
@@ -38,11 +40,13 @@ ngOnInit() {
   //   this.sl.addIn(ing);
   // }
   this.sl.addAllIngs(ings);
+  this.t.snack('The ingredients was added to the shopping list')
 }
 
     deleteR() {
         this.rs.deleteRecipe(this.id);
         this.router.navigate(['../'], {relativeTo: this.route})
+        this.t.snack('The recipe was deleted', 'red')
     }
 
 }
