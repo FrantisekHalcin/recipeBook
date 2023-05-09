@@ -15,8 +15,10 @@ import {ShopListService} from "./shopping-list/shop-list.service";
 import {EditRecipeComponent} from './recipes/edit-recipe/edit-recipe.component';
 import {StartRecipesComponent} from './recipes/start-recipes/start-recipes.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +32,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         RecipeItemComponent,
         DropdownDirective,
         EditRecipeComponent,
-        StartRecipesComponent
+        StartRecipesComponent,
+        AuthComponent
     ],
     imports: [
         BrowserModule,
@@ -38,9 +41,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule
     ],
-    providers: [ShopListService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
