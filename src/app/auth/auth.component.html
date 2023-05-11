@@ -1,14 +1,24 @@
-<div class="row">
-    <div class="col-sm-12">
-        <form>
-            <div class="mb-3">
-                <label for="email">Email: </label>
-                <input type="email" id="email" name="email" class="form-control">
+    <div class="row justify-content-center align-items-center" style="margin-top: 100px; padding: 20px">
+        <div class="col-sm-8 col-md-6 m-auto" style="background-color: darkolivegreen; color: white; padding: 40px; border: solid gray 1px;border-radius: 10px;">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{error}}</p>
             </div>
-            <div class="mb-3">
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password" class="form-control">
+            <div *ngIf="isLoading" style="text-align: center">
+                <app-loading-spinner></app-loading-spinner>
             </div>
-        </form>
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+                <div class="mb-3">
+                    <label for="email">Email: </label>
+                    <input type="email" id="email" name="email" class="form-control" ngModel required email>
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password" class="form-control" ngModel required minlength="6">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark" [disabled]="!authForm.valid">{{logMode?'Log In' : 'Sign Up'}}</button>
+                    <button type="button" class="btn btn-dark" (click)="switch()">{{logMode? 'switch to SignUp' : 'switch to LogIn'}}</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>

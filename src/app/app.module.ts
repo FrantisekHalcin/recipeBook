@@ -19,6 +19,7 @@ import { HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { AuthComponent } from './auth/auth.component';
         DropdownDirective,
         EditRecipeComponent,
         StartRecipesComponent,
-        AuthComponent
+        AuthComponent,
+        LoadingSpinnerComponent
     ],
     imports: [
         BrowserModule,
