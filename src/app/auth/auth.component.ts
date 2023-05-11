@@ -45,13 +45,11 @@ export class AuthComponent {
             next: (responseData) => {
                 this.isLoading = false;
                 this.router.navigate(['/recipes']);
-                console.log(responseData);
             },
             error: (errorMes) => {
                 this.isLoading = false
 
                 this.error = errorMes;
-                console.log(errorMes)
             }
         });
         form.reset();

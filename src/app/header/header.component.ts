@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.userSub = this.as.user.subscribe(
             (user: UserModel) => {
                 this.isLoggedIn = !!user;
-                console.log('1 ' + !user);
-                console.log('2 ' + !!user);
             }
         )
     }
@@ -39,6 +37,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     getData() {
         this.ds.fetchRecipes().subscribe();
+    }
+
+    logOut() {
+        this.as.logOut();
     }
 
     ngOnDestroy() {

@@ -11,15 +11,15 @@ import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 import {ShoppingEditComponent} from './shopping-list/shopping-edit/shopping-edit.component';
 import {RecipeItemComponent} from './recipes/recipe-list/recipe-item/recipe-item.component';
 import {DropdownDirective} from './dropdown.directive';
-import {ShopListService} from "./shopping-list/shop-list.service";
 import {EditRecipeComponent} from './recipes/edit-recipe/edit-recipe.component';
 import {StartRecipesComponent} from './recipes/start-recipes/start-recipes.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 
 @NgModule({
     declarations: [
@@ -46,7 +46,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
         BrowserAnimationsModule,
         HttpClientModule
     ],
-    providers: [],
+    providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
     bootstrap: [AppComponent]
 })
 export class AppModule {
