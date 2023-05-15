@@ -15,6 +15,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userSub: Subscription;
     isLoggedIn: Boolean = null;
 
+    myTime: number
+    myUser: UserModel;
+    myInterval: number;
+
     constructor(
         private ds: DataStorageService,
         private t: ToastService,
@@ -26,8 +30,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.userSub = this.as.user.subscribe(
             (user: UserModel) => {
                 this.isLoggedIn = !!user;
+                this.myUser = user;
+                if (this.isLoggedIn) {
+                    this.showTime();
+                } else {
+                    clearInterval(this.myInterval);
+                }
             }
         )
+    }
+
+    showTime () {
+        this.myInterval = setInterval(() => {
+            this.myTime = this.myUser.logTime
+        }, 1000)
     }
 
     saveData() {

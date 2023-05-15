@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" style="cursor: pointer">Recipe book</a>
+        <span [class]="myTime>60000?'text-info':'text-danger'" *ngIf="isLoggedIn">{{myTime | date : 'mm:ss'}}</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

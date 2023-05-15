@@ -67,10 +67,10 @@ export class AuthService {
             return
         }
 
-        const loadedUser = new UserModel(user.email, user.id, user._token, new Date(user._tokenExpiry))
+         const loadedUser = new UserModel(user.email, user.id, user._token, new Date(user._tokenExpiry))
          if (loadedUser.token) {
              this.user.next(loadedUser);
-             const  expiryDuration= new Date(user._tokenExpiry).getTime() - new Date().getTime();
+             const expiryDuration= new Date(user._tokenExpiry).getTime() - new Date().getTime();
              this.autoLogOut(expiryDuration);
          }
 

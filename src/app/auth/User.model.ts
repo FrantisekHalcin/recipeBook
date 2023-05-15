@@ -13,4 +13,8 @@ export class UserModel {
         }
         return this._token;
     }
+
+    get logTime() {
+        return new Date(this._tokenExpiry).getTime() - new Date().getTime();
+    }
 }
