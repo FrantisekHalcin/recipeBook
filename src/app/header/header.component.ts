@@ -6,9 +6,9 @@ import {Subscription} from "rxjs";
 import {UserModel} from "../auth/User.model";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         )
     }
 
-    showTime () {
+    showTime() {
         this.myInterval = setInterval(() => {
             this.myTime = this.myUser.logTime
         }, 1000)
