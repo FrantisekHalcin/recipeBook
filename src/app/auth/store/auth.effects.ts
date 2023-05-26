@@ -1,6 +1,6 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as fromAuthActions from './auth.actions'
-import {map, of, switchMap, tap, throwError} from "rxjs";
+import {map, of, switchMap, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {Injectable} from "@angular/core";
