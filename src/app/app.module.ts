@@ -9,7 +9,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import {SharedModuleModule} from "./shared/shared-module/shared-module.module";
 import {StoreModule} from "@ngrx/store";
-import {shoppingListReducer} from "./shopping-list/store/shopping-list-reducer";
+import * as fromAppStore from '../app/store/app.reducer';
+import {EffectsModule} from "@ngrx/effects";
+import {AuthEffects} from "./auth/store/auth.effects";
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {shoppingListReducer} from "./shopping-list/store/shopping-list-reducer";
     ],
     imports: [
         BrowserModule,
-        StoreModule.forRoot({shoppingList: shoppingListReducer}),
+        StoreModule.forRoot(fromAppStore.appReducer),
+        EffectsModule.forRoot([AuthEffects]),
         AppRoutingModule,
         HttpClientModule,
         SharedModuleModule,

@@ -4,6 +4,10 @@ import {ToastService} from "../toast.service";
 import {AuthService} from "../auth/auth.service";
 import {Subscription} from "rxjs";
 import {UserModel} from "../auth/User.model";
+import {map} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromAuth from '../store/app.reducer'
+import * as fromAuthActions from "../auth/store/auth.actions";
 
 @Component({
     selector: 'app-header',
@@ -23,11 +27,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private ds: DataStorageService,
         private t: ToastService,
         private as: AuthService,
+        private store: Store<fromAuth.AppState>
     ) {
     }
 
     ngOnInit() {
-        this.userSub = this.as.user.subscribe(
+        this.userSub = this.store.select('auth').pipe(map((state) => {
+            return state.user
+        }))
+            .subscribe(
             (user: UserModel) => {
                 this.isLoggedIn = !!user;
                 this.myUser = user;
@@ -56,7 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     logOut() {
-        this.as.logOut();
+        this.store.dispatch(new fromAuthActions.Logout);
     }
 
     ngOnDestroy() {

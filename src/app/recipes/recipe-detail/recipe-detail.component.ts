@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {RecipeModel} from "../recipe.model";
-import {ShopListService} from "../../shopping-list/shop-list.service";
 import {IngredientModel} from "../../shared/ingredient.model";
 import {RecipesService} from "../recipes.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ToastService} from "../../toast.service";
+import * as ShoppingListActions from "../../shopping-list/store/shopping-list-actions";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -16,11 +17,11 @@ clickedR : RecipeModel;
 id: number;
 
 constructor(
-  private sl: ShopListService,
   private rs: RecipesService,
   private route: ActivatedRoute,
   private router: Router,
   private t: ToastService,
+  private store: Store
 ) {
 }
 
@@ -32,14 +33,10 @@ ngOnInit() {
       this.clickedR = this.rs.getRecipe(this.id)
     }
   )
-
 }
 
   addIngs(ings: IngredientModel[]){
-  // for (const ing of ings) {
-  //   this.sl.addIn(ing);
-  // }
-  this.sl.addAllIngs(ings);
+  this.store.dispatch(new ShoppingListActions.AddIngredients(ings))
   this.t.snack('The ingredients was added to the shopping list')
 }
 
