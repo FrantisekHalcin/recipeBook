@@ -7,6 +7,7 @@ import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
 import {UserModel} from "../User.model";
 import {AuthService} from "../auth.service";
+import {Login} from "./auth.actions";
 
 export interface AuthResponseData {
     idToken: string;
@@ -36,7 +37,8 @@ export class AuthEffects {
             email: email,
             id: id,
             token: token,
-            expiration: expiryDate
+            expiration: expiryDate,
+            redirect: true
         })
     }
 
@@ -120,8 +122,11 @@ export class AuthEffects {
     authRedirect$ = createEffect(() =>
             this.actions$.pipe(
                 ofType(fromAuthActions.LOGIN),
-                tap(() => {
-                    this.router.navigate(['/recipes']);
+                tap((logAction: Login) => {
+                    if (logAction.payload.redirect) {
+                        this.router.navigate(['/recipes']);
+                    }
+
                 })
             ),
         {dispatch: false}
@@ -164,7 +169,8 @@ export class AuthEffects {
                         email: user.email,
                         id: user.id,
                         token: user._token,
-                        expiration: new Date(user._tokenExpiry)
+                        expiration: new Date(user._tokenExpiry),
+                        redirect: false
                     })
 
                 }

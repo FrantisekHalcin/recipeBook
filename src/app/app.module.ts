@@ -12,6 +12,7 @@ import {StoreModule} from "@ngrx/store";
 import * as fromAppStore from '../app/store/app.reducer';
 import {EffectsModule} from "@ngrx/effects";
 import {AuthEffects} from "./auth/store/auth.effects";
+import {RecipesEffects} from "./recipes/store/recipes.effects";
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {AuthEffects} from "./auth/store/auth.effects";
     imports: [
         BrowserModule,
         StoreModule.forRoot(fromAppStore.appReducer),
-        EffectsModule.forRoot([AuthEffects]),
+        EffectsModule.forRoot([AuthEffects, RecipesEffects]),
         AppRoutingModule,
         HttpClientModule,
         SharedModuleModule,

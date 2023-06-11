@@ -1,5 +1,4 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {DataStorageService} from "../shared/data-storage.service";
 import {ToastService} from "../toast.service";
 import {AuthService} from "../auth/auth.service";
 import {Subscription} from "rxjs";
@@ -8,6 +7,7 @@ import {map} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromAuth from '../store/app.reducer'
 import * as fromAuthActions from "../auth/store/auth.actions";
+import {fetch_recipes, store_recipes} from "../recipes/store/recipes.actions";
 
 @Component({
     selector: 'app-header',
@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     myInterval: number;
 
     constructor(
-        private ds: DataStorageService,
         private t: ToastService,
         private as: AuthService,
         private store: Store<fromAuth.AppState>
@@ -55,12 +54,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     saveData() {
-        this.ds.storeRecipes();
+        this.store.dispatch(store_recipes())
         this.t.snack('Data was saved on the server');
     }
 
     getData() {
-        this.ds.fetchRecipes().subscribe();
+        this.store.dispatch(fetch_recipes());
     }
 
     logOut() {

@@ -1,15 +1,19 @@
-import {Injectable} from '@angular/core';
-import {RecipeModel} from "./recipe.model";
-import {Subject} from "rxjs";
+import {RecipeModel} from "../recipe.model";
+import {createReducer, on} from "@ngrx/store";
+import {add_recipe, delete_recipe, set_recipes, update_recipe} from "./recipes.actions";
 
-@Injectable({
-    providedIn: 'root'
-})
-export class RecipesService {
+export interface State {
+    recipes: RecipeModel[]
+}
 
-    recipesChanged: Subject<RecipeModel[]> = new Subject <RecipeModel[]>();
+const initialState: State = {
+    recipes: []
+}
 
-    // private recipes: RecipeModel[] = [
+/**
+ * recipes backup
+ */
+    // [
     //     new RecipeModel('Spaghetti',
     //         'How to prepare delicious dinner',
     //         'https://media.istockphoto.com/id/1341564316/photo/spaghetti-and-meatballs.jpg?b=1&s=170667a&w=0&k=20&c=bSfMJCKXDP2qeFZxlfp6vZDiWCy0Uhhx6v53xZJE5HI=',
@@ -55,38 +59,30 @@ export class RecipesService {
     //             new IngredientModel('cheese', 3),
     //             new IngredientModel('salt', 2)
     //         ])
-    // ];
-    private recipes: RecipeModel[] = [];
+    // ]
 
-    constructor(
-    ) {
-    }
 
-    getRecipes() {
-        return this.recipes.slice();
-    }
+export const recipesReducer = createReducer(
+    initialState,
+    on(set_recipes, (state, props) => {
+        return {...state, recipes: props.payload}}
+    ),
+    on(add_recipe, (state, props) => {
+        return {...state, recipes: [...state.recipes, props.recipe]}
+    }),
+    on(update_recipe, (state, props) => {
+        const updatedRecipe = {
+            ...state.recipes[props.id],
+            ...props.recipe
+        }
+        const updatedRecipes = [ ...state.recipes ];
+        updatedRecipes[props.id] = updatedRecipe;
 
-    getRecipe(id: number) {
-        return this.recipes[id];
-    }
-
-    saveRecipe(recipe: RecipeModel, index: number) {
-        this.recipes[index] = recipe;
-        this.recipesChanged.next(this.recipes.slice())
-    }
-
-    addRecipe(recipe: RecipeModel) {
-        this.recipes.push(recipe);
-        this.recipesChanged.next(this.recipes.slice())
-    }
-
-    deleteRecipe(index: number) {
-        this.recipes.splice(index, 1);
-        this.recipesChanged.next(this.recipes.slice())
-    }
-
-    setRecipesServer(serverRecipes: RecipeModel[]) {
-            this.recipes = serverRecipes;
-            this.recipesChanged.next(this.recipes.slice());
-    }
-}
+        return {...state, recipes: updatedRecipes}
+    }),
+    on(delete_recipe, (state, props) => {
+        return {...state, recipes: state.recipes.filter((recipe, index) => {
+            return index !== props.id;
+            })}
+    })
+)

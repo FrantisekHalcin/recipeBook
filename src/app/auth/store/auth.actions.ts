@@ -11,7 +11,7 @@ export const AUTO_LOGIN = '[Auth] Auto Login'
 export class Login implements Action {
     readonly type = LOGIN
     constructor(public payload: {
-        email: string, id: string, token: string, expiration: Date
+        email: string, id: string, token: string, expiration: Date, redirect: boolean
     }) {
     }
 }
