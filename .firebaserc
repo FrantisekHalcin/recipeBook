@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "recipes-book-ng"
+  },
+  "targets": {
+    "recipes-book-ng": {
+      "hosting": {
+        "app": [
+          "recipes-book-ng"
+        ]
+      }
+    }
   }
 }

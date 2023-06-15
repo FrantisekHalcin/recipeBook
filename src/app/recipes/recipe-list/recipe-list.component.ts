@@ -16,19 +16,19 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
             state('recIn', style({
                 opacity: 1,
             })),
-            transition('void <=> *', [
+            transition('void => *', [
                 style({
                     opacity: 0,
                 }),
                 animate(500)]
             ),
-            // transition('* => void', [
-            //     animate(
-            //         500,
-            //         style({
-            //             opacity: 0,
-            //         }), )]
-            // )
+            transition('* => void', [
+                animate(500,
+                    style({
+                        opacity: 0,
+                    })
+                )]
+            ),
         ])
     ]
 })
@@ -51,7 +51,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
                 }
             );
 
-        this.store.dispatch(fetch_recipes());
+        if (this.recipes.length === 0) {
+            this.store.dispatch(fetch_recipes());
+        }
     }
 
     ngOnDestroy() {
