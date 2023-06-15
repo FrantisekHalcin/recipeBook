@@ -2,22 +2,22 @@ import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {IngredientModel} from "../../shared/ingredient.model";
 import {NgForm} from "@angular/forms";
 import {Subscription} from "rxjs";
-import { ToastService} from "../../toast.service";
+import {ToastService} from "../../toast.service";
 import {Store} from "@ngrx/store";
 import * as ShoppingListActions from "../store/shopping-list-actions";
 import * as fromAppStore from "../../store/app.reducer";
-
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
 @Component({
     selector: 'app-shopping-edit',
     templateUrl: './shopping-edit.component.html',
-    styleUrls: ['./shopping-edit.component.css']
+    styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
     @ViewChild('f', {static: false}) myForm: NgForm;
 
-    editMode= false;
+    editMode = false;
     mySub: Subscription;
     editedIng: IngredientModel;
 
@@ -30,7 +30,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.mySub = this.store.select('shoppingList').subscribe(
             (state) => {
-                if (state.editedIngIndex > -1){
+                if (state.editedIngIndex > -1) {
                     this.editMode = true;
                     this.editedIng = state.editedIng;
                     this.myForm.setValue({
@@ -67,19 +67,17 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
     onDelete() {
         this.store.dispatch(new ShoppingListActions.DeleteIngredient())
-        // this.sl.deleteIng(this.editIndex);
-        this.t.snack('The ingredient was deleted','red');
+        this.t.snack('The ingredient was deleted', 'red');
         this.onClear();
     }
 
-    snack(t:string, r?:string) {
+    snack(t: string, r?: string) {
         this.t.snack(t, r)
     }
 
     ngOnDestroy() {
         this.mySub.unsubscribe();
         this.store.dispatch(new ShoppingListActions.StopEdit())
-
     }
 
 }
